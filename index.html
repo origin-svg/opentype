@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenType — OpenCloud</title>
+  <meta name="description" content="Test de velocidad de escritura open source by origin-svg">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⌨</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="bg" aria-hidden="true">
+  <svg class="bg__cloud" viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="g1" cx="50%" cy="55%" r="50%">
+        <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.13"/>
+        <stop offset="50%"  stop-color="#c7d2fe" stop-opacity="0.06"/>
+        <stop offset="100%" stop-color="#818cf8" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="g2" cx="50%" cy="50%" r="50%">
+        <stop offset="0%"   stop-color="#818cf8" stop-opacity="0.10"/>
+        <stop offset="100%" stop-color="#818cf8" stop-opacity="0"/>
+      </radialGradient>
+      <filter id="bf"><feGaussianBlur stdDeviation="20"/></filter>
+    </defs>
+    <ellipse cx="450" cy="200" rx="400" ry="110" fill="url(#g2)" filter="url(#bf)"/>
+    <g filter="url(#bf)">
+      <ellipse cx="450" cy="250" rx="360" ry="82"  fill="url(#g1)"/>
+      <ellipse cx="235" cy="195" rx="172" ry="145" fill="url(#g1)"/>
+      <ellipse cx="650" cy="188" rx="158" ry="138" fill="url(#g1)"/>
+      <ellipse cx="422" cy="145" rx="118" ry="105" fill="url(#g1)"/>
+      <ellipse cx="338" cy="178" rx="90"  rx="78"  fill="url(#g1)" opacity=".65"/>
+      <ellipse cx="530" cy="165" rx="86"  ry="74"  fill="url(#g1)" opacity=".65"/>
+    </g>
+  </svg>
+</div>
+
+<header class="navbar">
+  <div class="brand">
+    <div class="brand__mark">OT</div>
+    <div>
+      <div class="brand__name">OpenType</div>
+      <div class="brand__sub">by origin-svg</div>
+    </div>
+  </div>
+  <a href="https://github.com/origin-svg/opentype"
+     target="_blank" rel="noopener" class="gh-btn">GitHub</a>
+</header>
+
+<main>
+
+  <div class="controls">
+    <div class="ctrl-group">
+      <span class="ctrl-label">Tiempo</span>
+      <div class="ctrl-pills">
+        <button class="ctrl-pill" data-time="15">15s</button>
+        <button class="ctrl-pill active" data-time="30">30s</button>
+        <button class="ctrl-pill" data-time="60">60s</button>
+        <button class="ctrl-pill" data-time="120">120s</button>
+      </div>
+    </div>
+    <div class="ctrl-sep"></div>
+    <div class="ctrl-group">
+      <span class="ctrl-label">Modo</span>
+      <div class="ctrl-pills">
+        <button class="ctrl-pill active" data-mode="words">Palabras</button>
+        <button class="ctrl-pill" data-mode="quotes">Frases</button>
+      </div>
+    </div>
+    <div class="ctrl-sep"></div>
+    <div class="ctrl-group">
+      <span class="ctrl-label">Idioma</span>
+      <div class="ctrl-pills">
+        <button class="ctrl-pill active" data-lang="es">ES</button>
+        <button class="ctrl-pill" data-lang="en">EN</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat">
+      <span class="stat__val" id="wpm">0</span>
+      <span class="stat__lbl">WPM</span>
+    </div>
+    <div class="stat">
+      <span class="stat__val accent" id="timerVal">30</span>
+      <span class="stat__lbl">seg</span>
+    </div>
+    <div class="stat">
+      <span class="stat__val" id="acc">100</span>
+      <span class="stat__lbl">% Acc</span>
+    </div>
+  </div>
+
+  <div class="type-area" id="typeArea" tabindex="0">
+    <div class="words-wrap">
+      <div class="words" id="words"></div>
+    </div>
+    <input id="input" class="hidden-input"
+      autocomplete="off" autocorrect="off"
+      autocapitalize="off" spellcheck="false">
+  </div>
+
+  <p class="hint" id="hint">
+    Haz clic aquí o presiona cualquier tecla &mdash;
+    <kbd>Tab</kbd> para reiniciar
+  </p>
+
+  <div class="results" id="results" hidden>
+    <div class="results__grid">
+      <div class="res-card">
+        <span class="res-val" id="resWpm">—</span>
+        <span class="res-lbl">WPM</span>
+      </div>
+      <div class="res-card">
+        <span class="res-val" id="resAcc">—</span>
+        <span class="res-lbl">Precisión</span>
+      </div>
+      <div class="res-card">
+        <span class="res-val" id="resChars">—</span>
+        <span class="res-lbl">Correctas</span>
+      </div>
+      <div class="res-card">
+        <span class="res-val" id="resErrors">—</span>
+        <span class="res-lbl">Errores</span>
+      </div>
+    </div>
+    <button class="btn-restart" id="restartBtn">Intentar de nuevo</button>
+    <p class="hint" style="margin-top:10px">o presiona <kbd>Tab</kbd></p>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <span>OpenType &copy; 2026</span>
+  <span class="sep">·</span>
+  <a href="https://github.com/origin-svg/opentype" target="_blank">origin-svg</a>
+  <span class="sep">·</span>
+  <a href="https://github.com/origin-svg/opentype/blob/main/LICENSE">MIT</a>
+</footer>
+
+<script src="js/app.js"></script>
+</body>
+</html>
